@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# debugging Nginx web server
-ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
-service nginx restart
-pkill -f "nginx"
+# make nginx listen on 80 and status is not running
+sudo sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
+sudo service nginx restart
+echo "" | sudo dd status=none of=/run/nginx.pid
